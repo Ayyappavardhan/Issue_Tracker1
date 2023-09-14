@@ -7,9 +7,14 @@ server:
       enabled: false
   port: 8080
 spring:
+  rabbitmq:
+    host: localhost
+    port: 5672
+    username: guest
+    password: guest
   datasource:
     password: password
-    url: jdbc:postgresql://localhost:5432/issuetracker
+    url: jdbc:postgresql://localhost:5432/itsmissuetracker
     username: postgres
   jpa:
     hibernate:
@@ -19,4 +24,8 @@ spring:
         dialect: org.hibernate.dialect.PostgreSQLDialect
         format_sql: true
     show-sql: true
+
+
+
+
 

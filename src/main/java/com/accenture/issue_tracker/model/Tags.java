@@ -9,15 +9,15 @@ import java.util.Objects;
 public class Tags {
     @Id
     @SequenceGenerator(
-            name = "tag_sequence",
-            sequenceName = "tag_sequence",
+            name = "Tag_sequence",
             initialValue = 1,
             allocationSize = 1
     )
     @GeneratedValue(
             strategy = GenerationType.SEQUENCE,
-            generator = "tag_sequence"
+            generator ="Tag_sequence"
     )
+
 
     private Long id;
     private String service;

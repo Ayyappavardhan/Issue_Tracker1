@@ -3,9 +3,11 @@ package com.accenture.issue_tracker.model;
 import jakarta.persistence.*;
 
 import javax.annotation.processing.Generated;
+import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.Objects;
 @Entity
+@Table(name = "ITSM")
 public class ITSMTableData {
     /*
     Id->long
@@ -22,30 +24,33 @@ public class ITSMTableData {
      */
     @Id
     @SequenceGenerator(
-            name = "ITSM_sequence",
-            sequenceName = "ITSM_sequence",
+            name = "ITSM_Sequence",
             initialValue = 1,
             allocationSize = 1
     )
+
     @GeneratedValue(
             strategy = GenerationType.SEQUENCE,
-            generator = "ITSM_sequence"
+            generator = "ITSM_Sequence"
     )
-    private long id;
+    private Long id;
 
     private String incident;
     private String summary;
     private String notes;
-    private Date slaTime;
-    private Date dateOfCreation;
-    private Date resolved;
+    private LocalDateTime slaTime;
+    private LocalDateTime dateOfCreation;
+    private LocalDateTime resolved;
     private String status;
     private String assignee;
+    private String service;
+
 
     public ITSMTableData() {
     }
 
-    public ITSMTableData(long id, String incident, String summary, String notes, Date slaTime, Date dateOfCreation, Date resolved, String status, String assignee) {
+    public ITSMTableData(Long id, String incident, String summary, String notes, LocalDateTime slaTime,
+                         LocalDateTime dateOfCreation, LocalDateTime resolved, String status, String assignee,String service) {
         this.id = id;
         this.incident = incident;
         this.summary = summary;
@@ -55,9 +60,11 @@ public class ITSMTableData {
         this.resolved = resolved;
         this.status = status;
         this.assignee = assignee;
+        this.service=service;
     }
 
-    public ITSMTableData(String incident, String summary, String notes, Date slaTime, Date dateOfCreation, Date resolved, String status, String assignee) {
+    public ITSMTableData(String incident, String summary, String notes, LocalDateTime slaTime,
+                         LocalDateTime dateOfCreation, LocalDateTime resolved, String status, String assignee,String service) {
         this.incident = incident;
         this.summary = summary;
         this.notes = notes;
@@ -66,6 +73,7 @@ public class ITSMTableData {
         this.resolved = resolved;
         this.status = status;
         this.assignee = assignee;
+        this.service=service;
     }
 
     public long getId() {
@@ -100,27 +108,27 @@ public class ITSMTableData {
         this.notes = notes;
     }
 
-    public Date getSlaTime() {
+    public LocalDateTime getSlaTime() {
         return slaTime;
     }
 
-    public void setSlaTime(Date slaTime) {
+    public void setSlaTime(LocalDateTime slaTime) {
         this.slaTime = slaTime;
     }
 
-    public Date getDateOfCreation() {
+    public LocalDateTime getDateOfCreation() {
         return dateOfCreation;
     }
 
-    public void setDateOfCreation(Date dateOfCreation) {
+    public void setDateOfCreation(LocalDateTime dateOfCreation) {
         this.dateOfCreation = dateOfCreation;
     }
 
-    public Date getResolved() {
+    public LocalDateTime getResolved() {
         return resolved;
     }
 
-    public void setResolved(Date resolved) {
+    public void setResolved(LocalDateTime resolved) {
         this.resolved = resolved;
     }
 
@@ -140,17 +148,26 @@ public class ITSMTableData {
         this.assignee = assignee;
     }
 
+    public String getService() {
+        return service;
+    }
+
+    public void setService(String service) {
+        this.service = service;
+    }
+
     @Override
     public boolean equals(Object o) {
+
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         ITSMTableData that = (ITSMTableData) o;
-        return id == that.id && Objects.equals(incident, that.incident) && Objects.equals(summary, that.summary) && Objects.equals(notes, that.notes) && Objects.equals(slaTime, that.slaTime) && Objects.equals(dateOfCreation, that.dateOfCreation) && Objects.equals(resolved, that.resolved) && Objects.equals(status, that.status) && Objects.equals(assignee, that.assignee);
+        return id == that.id && Objects.equals(incident, that.incident) && Objects.equals(summary, that.summary) && Objects.equals(notes, that.notes) && Objects.equals(slaTime, that.slaTime) && Objects.equals(dateOfCreation, that.dateOfCreation) && Objects.equals(resolved, that.resolved) && Objects.equals(status, that.status) && Objects.equals(assignee, that.assignee) && Objects.equals(service, that.service);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, incident, summary, notes, slaTime, dateOfCreation, resolved, status, assignee);
+        return Objects.hash(id, incident, summary, notes, slaTime, dateOfCreation, resolved, status, assignee, service);
     }
 
     @Override
@@ -165,6 +182,7 @@ public class ITSMTableData {
                 ", resolved=" + resolved +
                 ", status='" + status + '\'' +
                 ", assignee='" + assignee + '\'' +
+                ", service='" + service + '\'' +
                 '}';
     }
 }

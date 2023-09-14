@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.Objects;
 
 @Entity
+@Table(name = "Issue_Table")
 public class IssueTableData {
     /*
     Id->long
@@ -22,15 +23,14 @@ public class IssueTableData {
      */
     @Id
     @SequenceGenerator(
-            name = "IssueTableData_sequence",
-            sequenceName = "IssueTableData_sequence",
+            name = "issue_Sequence",
             initialValue = 1,
             allocationSize = 1
     )
+
     @GeneratedValue(
             strategy = GenerationType.SEQUENCE,
-            generator = "IssueTableData_sequence"
-
+            generator = "issue_Sequence"
     )
     private Long id;
     @Column(name = "incident", unique = true)
@@ -45,8 +45,11 @@ public class IssueTableData {
     private List<Tags> tags;
     private String area;
 
-    public IssueTableData(Long id, String incident, String service, String status, String assignee, char breachIndicator,
-                          LocalDateTime dateOfCreation, List<Tags> tags, String area) {
+
+
+    public IssueTableData(Long id, String incident, String service, String status, String assignee,
+                          char breachIndicator, LocalDateTime dateOfCreation, List<Tags> tags,
+                          String area) {
         this.id = id;
         this.incident = incident;
         this.service = service;
@@ -58,8 +61,9 @@ public class IssueTableData {
         this.area = area;
     }
 
-    public IssueTableData(String incident, String service, String status, String assignee, char breachIndicator,
-                          LocalDateTime dateOfCreation, List<Tags> tags, String area) {
+    public IssueTableData(String incident, String service, String status, String assignee,
+                          char breachIndicator, LocalDateTime dateOfCreation, List<Tags> tags,
+                          String area) {
         this.incident = incident;
         this.service = service;
         this.status = status;
@@ -68,9 +72,10 @@ public class IssueTableData {
         this.dateOfCreation = dateOfCreation;
         this.tags = tags;
         this.area = area;
+
     }
-    public IssueTableData(String incident, String service, String status, String assignee, char breachIndicator,
-                          LocalDateTime dateOfCreation, String area) {
+    public IssueTableData(String incident, String service, String status, String assignee,
+                          char breachIndicator, LocalDateTime dateOfCreation, String area) {
         this.incident = incident;
         this.service = service;
         this.status = status;
@@ -162,15 +167,17 @@ public class IssueTableData {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         IssueTableData that = (IssueTableData) o;
-        return breachIndicator == that.breachIndicator && Objects.equals(id, that.id) && Objects.equals(incident,
-                that.incident) && Objects.equals(service, that.service) && Objects.equals(status, that.status) &&
-                Objects.equals(assignee, that.assignee) && Objects.equals(dateOfCreation, that.dateOfCreation) &&
+        return breachIndicator == that.breachIndicator && Objects.equals(id, that.id) &&
+                Objects.equals(incident, that.incident) && Objects.equals(service, that.service)
+                && Objects.equals(status, that.status) && Objects.equals(assignee, that.assignee)
+                && Objects.equals(dateOfCreation, that.dateOfCreation) &&
                 Objects.equals(tags, that.tags) && Objects.equals(area, that.area);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, incident, service, status, assignee, breachIndicator, dateOfCreation, tags, area);
+        return Objects.hash(id, incident, service, status, assignee, breachIndicator, dateOfCreation,
+                tags, area);
     }
 
     @Override
